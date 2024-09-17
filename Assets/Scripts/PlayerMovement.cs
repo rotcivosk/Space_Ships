@@ -8,16 +8,14 @@ public class PlayerMovement : MonoBehaviour
 
 
     [SerializeField] float playerSpeed = 5f;
-
-
-    [SerializeField] private float minX = -5f; // Limite mínimo no eixo X
-    [SerializeField] private float maxX = 5f;  // Limite máximo no eixo X
-  
-    private Vector3 moveDirection; // Direção do movimento
+    [SerializeField] private float minX = -5f;
+    [SerializeField] private float maxX = 5f; 
+    [SerializeField] private float minY = -5f;
+    [SerializeField] private float maxY = 5f; 
+    private Vector3 moveDirection;
 
     void Start()
     {
-        
     }
 
     void Update()
@@ -25,8 +23,6 @@ public class PlayerMovement : MonoBehaviour
         HandleInput();
         MovePlayer();
     }
-
-    // Método responsável por capturar as entradas de movimento
     private void HandleInput()
     {
         float moveVertical = 0f;
@@ -54,7 +50,8 @@ public class PlayerMovement : MonoBehaviour
         {
             transform.Translate(moveDirection * playerSpeed * Time.deltaTime);
             float clampedX = Mathf.Clamp(transform.position.x, minX, maxX);
-            transform.position = new Vector3(clampedX, transform.position.y, transform.position.z);
+            float clampedY = Mathf.Clamp(transform.position.y, minY, maxY);
+            transform.position = new Vector3(clampedX, clampedY, transform.position.z);
 
         }
     }
