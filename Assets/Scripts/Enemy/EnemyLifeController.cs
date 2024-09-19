@@ -5,11 +5,15 @@ using UnityEngine;
 public class Enemy  : MonoBehaviour
 {
     [SerializeField] float health = 5.0f;
-
+    [SerializeField] private float lifeTime = 10f;
+    [SerializeField] private GameObject particlePrefab;
+    private float spawnTime;
 
     void Update()
-    {
-        
+    {       
+        if(Time.time - spawnTime >= lifeTime) {
+            DieState();
+        }
     }
     public void TakeHit(float hitPoints){
 
@@ -18,12 +22,15 @@ public class Enemy  : MonoBehaviour
         if (health < 0){
             DieState();
         }
+        
 
     }
 
     void OnEnable()
     {
-        // Reset health or other properties
+        
+        spawnTime = Time.time;
+
         health = 100f;
 
         // Reset movement scripts if necessary
@@ -33,7 +40,11 @@ public class Enemy  : MonoBehaviour
             enemyMovement.ResetMovement();
         }
     }
-    void DieState(){
-        EnemyPool.Instance.ReturnObject(gameObject);
+    void DieState() {
+        Debug.Log("Morreu");
+        Instantiate(particlePrefab, this.transform.position, Quaternion.identity);
+        Destroy(particlePrefab, 3f);
+        //particles.Play();
+        //EnemyPool.Instance.ReturnObject(gameObject);
     }
 }
