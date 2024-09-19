@@ -5,7 +5,6 @@ using UnityEngine;
 public class PlayerShooting : MonoBehaviour
 {
 
-    [SerializeField] GameObject projectilePrefab;
 
     // Start is called before the first frame update
     void Start()
@@ -18,7 +17,14 @@ public class PlayerShooting : MonoBehaviour
     {
         if(Input.GetKeyDown(KeyCode.Space))
     {
-        Instantiate(projectilePrefab, transform.position, Quaternion.identity);
+        
+        FireBullet();
     }
+    }
+
+    void FireBullet(){
+        GameObject bullet = BulletPool.Instance.GetObject();
+        bullet.transform.position = transform.position;
+        bullet.transform.rotation = transform.rotation;
     }
 }

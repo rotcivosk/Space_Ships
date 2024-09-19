@@ -2,33 +2,34 @@ using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 
-public class ProjectileProjectile : MonoBehaviour
+public class Bullet : MonoBehaviour
 {
-
+    [SerializeField] private float speed = 10f;
+    [SerializeField] private float lifeTime = 2f;
+    [SerializeField] private float bulletDamage = 100.0f;
+    private float spawnTime;
     
-    [SerializeField]    private float speed = 5.0f;
-    // Start is called before the first frame update
-    void Start()
-    {
-        
+    void OnEnable() {
+        spawnTime = Time.time;
     }
 
-    // Update is called once per frame
     void Update()
     {
-        transform.Translate(Vector3.right * speed * Time.deltaTime);
+        transform.Translate(Vector2.right * speed * Time.deltaTime);
+        if(Time.time - spawnTime >= lifeTime) {
+            BulletPool.Instance.ReturnObject(gameObject);
+        }
     }
+
     void OnTriggerEnter2D(Collider2D collision){
 
         if (collision.tag == "Enemy"){
-            Debug.Log("Identificou Inimigo");
-
-            EnemyLifeController enemy = collision.gameObject.GetComponent<EnemyLifeController>();
-            enemy.TakeHit(1.0f);
-        
+            //Debug.Log("Identificou Inimigo");
+            Enemy enemy = collision.gameObject.GetComponent<Enemy>();
+            enemy.TakeHit(bulletDamage);
             //collision.gameObject.SendMessage("TakeHit", 1.0);
         }
-
+        BulletPool.Instance.ReturnObject(gameObject);
     }
 
 }

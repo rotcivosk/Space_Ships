@@ -2,30 +2,49 @@ using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 
-public class EnemyLifeController : MonoBehaviour
+public class Enemy  : MonoBehaviour
 {
-    [SerializeField] float maxHitPoints = 5.0f;
-    private float currentHitPoints;
-    void Start()
-    {
-        currentHitPoints = maxHitPoints;
-    }
+    [SerializeField] float health = 5.0f;
+    [SerializeField] private float lifeTime = 10f;
+    [SerializeField] private GameObject particlePrefab;
+    private float spawnTime;
+
     void Update()
-    {
-        
+    {       
+        if(Time.time - spawnTime >= lifeTime) {
+            DieState();
+        }
     }
     public void TakeHit(float hitPoints){
 
-        currentHitPoints = currentHitPoints - hitPoints;
-        Debug.Log("Take hit" + hitPoints+ " New life:" +  currentHitPoints);
-        if (currentHitPoints < 0){
+        health -= hitPoints;
+
+        if (health < 0){
             DieState();
         }
+        
 
     }
 
+    void OnEnable()
+    {
+        
+        spawnTime = Time.time;
 
-    void DieState(){
-        Destroy(gameObject);
+        health = 100f;
+
+        // Reset movement scripts if necessary
+        EnemyMovement enemyMovement = GetComponent<EnemyMovement>();
+        if (enemyMovement != null)
+        {
+            enemyMovement.ResetMovement();
+        }
+    }
+    void DieState() {
+        Debug.Log("Morreu");
+        Instantiate(particlePrefab, this.transform.position, Quaternion.identity);
+        Destroy(particlePrefab, 3f);
+        //particles.Play();
+        //EnemyPool.Instance.ReturnObject(gameObject);
     }
 }
