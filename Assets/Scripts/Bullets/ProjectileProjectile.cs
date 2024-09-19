@@ -18,10 +18,17 @@ public class ProjectileProjectile : MonoBehaviour
     {
         transform.Translate(Vector3.right * speed * Time.deltaTime);
     }
+    void OnTriggerEnter2D(Collider2D collision){
 
-    private void OnTriggerEnter2D(Collider2D collision)
-    {
-        Debug.Log("Colidiu");
-        Destroy(collision.gameObject);
+        if (collision.tag == "Enemy"){
+            Debug.Log("Identificou Inimigo");
+
+            EnemyLifeController enemy = collision.gameObject.GetComponent<EnemyLifeController>();
+            enemy.TakeHit(1.0f);
+        
+            //collision.gameObject.SendMessage("TakeHit", 1.0);
+        }
+
     }
+
 }
