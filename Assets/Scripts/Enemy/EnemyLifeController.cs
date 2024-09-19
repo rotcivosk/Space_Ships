@@ -5,7 +5,7 @@ using UnityEngine;
 public class Enemy  : MonoBehaviour
 {
     [SerializeField] float health = 5.0f;
-    [SerializeField] private float lifeTime = 10f;
+    [SerializeField] private float lifeTime = 5f;
     [SerializeField] private GameObject particlePrefab;
     private float spawnTime;
 
@@ -42,9 +42,9 @@ public class Enemy  : MonoBehaviour
     }
     void DieState() {
         Debug.Log("Morreu");
-        Instantiate(particlePrefab, this.transform.position, Quaternion.identity);
-        Destroy(particlePrefab, 3f);
+        //Instantiate(particlePrefab, this.transform.position, Quaternion.identity);
+        //Destroy(particlePrefab, 3f);
         //particles.Play();
-        //EnemyPool.Instance.ReturnObject(gameObject);
+        EnemyPool.Instance.ReturnObject(gameObject);
     }
 }
