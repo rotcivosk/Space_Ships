@@ -1,22 +1,19 @@
-using System.Collections;
-using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.SceneManagement;
 using UnityEngine.UI;
 
 public class PauseController : MonoBehaviour
 {
-    [SerializeField] private Image selectionIcon; // O ícone de seleção que se move
-    [SerializeField] private RectTransform[] menuOptions; // Opções do menu (Resume, Exit)
-    
+    [SerializeField] private Image selectionIcon; // The selection icon that moves
+    [SerializeField] private RectTransform[] menuOptions; // Menu options (Resume, Exit)
     [SerializeField] private GameObject pauseMenuUI;
 
     private bool isPaused = false;
-    private int currentIndex = 0; // Index da opção selecionada
+    private int currentIndex = 0; // Index of the selected option
 
     void Update()
     {
-        // Detecta a tecla ESC para pausar ou despausar
+        // Detect the ESC key to pause or resume
         if (Input.GetKeyDown(KeyCode.Escape))
         {
             if (isPaused)
@@ -25,81 +22,79 @@ public class PauseController : MonoBehaviour
                 PauseGame();
         }
 
-        // Se o jogo estiver pausado, permite navegação no menu
+        // If the game is paused, allow menu navigation
         if (isPaused)
         {
             if (Input.GetKeyDown(KeyCode.W) || Input.GetKeyDown(KeyCode.S))
             {
-                ToggleSelection(); // Alterna entre as opções
+                ToggleSelection(); // Toggle between options
             }
 
             if (Input.GetKeyDown(KeyCode.Space))
             {
-                SelectOption(); // Seleciona a opção atual
+                SelectOption(); // Select the current option
             }
         }
     }
 
-    // Alterna entre as opções do menu
+    // Toggle between menu options
     void ToggleSelection()
     {
-        currentIndex = (currentIndex == 0) ? 1 : 0; // Alterna entre Resume (0) e Exit (1)
+        currentIndex = (currentIndex == 0) ? 1 : 0; // Switch between Resume (0) and Exit (1)
         UpdateSelectionIconPosition();
     }
 
-    // Atualiza a posição do ícone de seleção
+    // Update the position of the selection icon
     void UpdateSelectionIconPosition()
     {
-        // Definir o deslocamento no eixo X para mover o ícone para a esquerda
-        float offsetX = -38f; // Ajuste o valor conforme necessário
+        float offsetX = -38f; // Adjust the value as needed
 
-        // Obter a posição da opção atual
         Vector3 newPosition = menuOptions[currentIndex].position;
 
-        // Aplicar o deslocamento no eixo X
+        // Apply the offset on the X-axis
         newPosition.x += offsetX;
 
-        // Atualizar a posição do ícone de seleção
+        // Update the position of the selection icon
         selectionIcon.rectTransform.position = newPosition;
     }
 
-    // Executa a ação da opção selecionada
+    // Execute the action of the selected option
     void SelectOption()
     {
         switch (currentIndex)
         {
             case 0:
-                ResumeGame(); // Retomar o jogo
+                ResumeGame(); // Resume the game
                 break;
             case 1:
-                ExitGame(); // Sair para o menu principal
+                ExitGame(); // Exit to the main menu
                 break;
             default:
-                Debug.LogError("Opção inválida no menu de pausa.");
+                Debug.LogError("Invalid option in the pause menu.");
                 break;
         }
     }
 
-    // Retoma o jogo
+    // Resume the game
     public void ResumeGame()
     {
         pauseMenuUI.SetActive(false);
-        Time.timeScale = 1f; // Retomar o tempo
+        Time.timeScale = 1f; // Resume time
         isPaused = false;
     }
 
-    // Pausa o jogo
+    // Pause the game
     public void PauseGame()
     {
         pauseMenuUI.SetActive(true);
-        Time.timeScale = 0f; // Pausar o tempo
+        Time.timeScale = 0f; // Pause time
         isPaused = true;
 
-        // Atualiza a posição do ícone de seleção quando o menu é ativado
+        // Update the position of the selection icon when the menu is activated
         UpdateSelectionIconPosition();
     }
 
-    // Sai do jogo e vai para o menu principal
+    // Exit the game and go to the main menu
     public void ExitGame()
     {
         Time.timeScale = 1f;

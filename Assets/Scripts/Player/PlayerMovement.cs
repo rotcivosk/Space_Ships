@@ -65,8 +65,5 @@ public class PlayerMovement : MonoBehaviour
     }
 
 
-    private void OnTriggerEnter2D(Collider2D other) {
-        AudioManager.Instance.PlayPlayerDeathSound();
-        
-    }
+    
 }

@@ -2,21 +2,26 @@ using UnityEngine;
 using UnityEngine.SceneManagement;
 using UnityEngine.UI;
 
-public class MainMenuController : MonoBehaviour
+public class EndMenuController : MonoBehaviour
 {
     [SerializeField] private Image selectionIcon; // The selection icon that moves
-    [SerializeField] private RectTransform[] menuOptions; // Menu options (Start, Exit)
+    [SerializeField] private RectTransform[] menuOptions; // Menu options (Restart, Exit)
 
     private int currentIndex = 0; // Index of the selected option
 
-    void Start()
+    void OnEnable()
     {
-        // Ensure the icon starts at the first option (Start Game)
+        // Ensure the icon starts at the first option (Restart Game)
+        currentIndex = 0;
         UpdateSelectionIconPosition();
     }
 
     void Update()
     {
+        // Only process input if the menu is active
+        if (!gameObject.activeInHierarchy)
+            return;
+
         // Detect navigation up or down
         if (Input.GetKeyDown(KeyCode.W) || Input.GetKeyDown(KeyCode.S))
         {
@@ -40,7 +45,7 @@ public class MainMenuController : MonoBehaviour
     // Update the position of the selection icon
     void UpdateSelectionIconPosition()
     {
-        float offsetX = -33f; // Negative value moves to the left
+        float offsetX = -40f; // Negative value moves to the left
 
         Vector3 newPosition = menuOptions[currentIndex].position;
 
@@ -57,10 +62,10 @@ public class MainMenuController : MonoBehaviour
         switch (currentIndex)
         {
             case 0:
-                StartGame();
+                RestartGame();
                 break;
             case 1:
-                ExitGame();
+                ExitToMainMenu();
                 break;
             default:
                 Debug.LogError("Invalid menu option.");
@@ -68,20 +73,16 @@ public class MainMenuController : MonoBehaviour
         }
     }
 
-    // Start the game
-    void StartGame()
+    private void RestartGame()
     {
-        SceneManager.LoadScene("GameScene"); // Replace "GameScene" with your game's scene name
+        // Reload the current scene
+        Time.timeScale = 1f; // Resume time
+        SceneManager.LoadScene(SceneManager.GetActiveScene().name);
     }
 
-    // Exit the game
-    void ExitGame()
+    private void ExitToMainMenu()
     {
-        Application.Quit();
-
-#if UNITY_EDITOR
-        // To make it work in the editor
-        UnityEditor.EditorApplication.isPlaying = false;
-#endif
+        Time.timeScale = 1f; // Resume time
+        SceneManager.LoadScene("MainMenu");
     }
 }

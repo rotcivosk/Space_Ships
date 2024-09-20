@@ -1,9 +1,5 @@
-using System.Collections;
-using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.SceneManagement;
-using UnityEngine.TextCore.Text;
-using UnityEngine.UI;
 using TMPro;
 
 public class GameController : MonoBehaviour
@@ -13,8 +9,7 @@ public class GameController : MonoBehaviour
     [SerializeField] private GameObject endLevelMenuUI;
     [SerializeField] private TextMeshProUGUI scoreText;
 
-
-        private void Awake()
+    private void Awake()
     {
         // Singleton pattern
         if (Instance == null)
@@ -47,19 +42,6 @@ public class GameController : MonoBehaviour
     {
         // Activate the end level menu
         endLevelMenuUI.SetActive(true);
-        Time.timeScale = 0f; // Pause the game
-    }
-
-    public void RestartGame()
-    {
-        // Reload the current scene
-        Time.timeScale = 1f; // Resume time
-        SceneManager.LoadScene(SceneManager.GetActiveScene().name);
-    }
-
-    public void ExitToMainMenu()
-    {
-        Time.timeScale = 1f; // Resume time
-        SceneManager.LoadScene("MainMenu");
+        // Time.timeScale = 0f; // Optional: Pause the game
     }
 }
