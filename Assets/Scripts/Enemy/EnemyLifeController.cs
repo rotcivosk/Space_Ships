@@ -8,7 +8,7 @@ public class Enemy  : MonoBehaviour
     [SerializeField] private float lifeTime = 5f;
     private float spawnTime;
     [SerializeField] private AudioSource audioSource;
-    [SerializeField] private AudioClip clip;
+    //[SerializeField] private AudioClip clip;
 
     void Update()
     {       
@@ -44,21 +44,16 @@ public class Enemy  : MonoBehaviour
     void DieState()
     {
         GameController.Instance.AddScore(10);
-        // Get particle system from the pool
+        audioSource.Play();
+
         GameObject particles = ParticlePool.Instance.GetObject();
         particles.transform.position = this.transform.position;
-
-        // Get ParticleSystem component
         ParticleSystem particleSystem = particles.GetComponent<ParticleSystem>();
         if (particleSystem != null)
         {
             particleSystem.Play();
         }
-
-        // Return the enemy to the pool immediately
         EnemyPool.Instance.ReturnObject(gameObject);
-
-        // Call ParticleManager to handle particle system coroutine
         ParticleManager.Instance.PlayParticlesAndReturn(particles, particleSystem);
     }
 }
