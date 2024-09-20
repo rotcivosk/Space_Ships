@@ -5,7 +5,10 @@ using UnityEngine;
 public class PlayerLifeController : MonoBehaviour
 {
     // Start is called before the first frame update
-        [SerializeField] private GameObject player; 
+    [SerializeField] private GameObject player; 
+    [SerializeField] private GameObject endLevelMenuUI; // Reference to the End Level Menu UI
+
+    private bool isDead = false;
     void Start()
     {
         
@@ -20,13 +23,17 @@ public class PlayerLifeController : MonoBehaviour
     private void OnTriggerEnter2D(Collider2D other) {
         PlayerDying();
 
-
+        isDead = true;
 
 
     }
 
 
     private void PlayerDying(){
+
+        endLevelMenuUI.SetActive(true);
+        Time.timeScale = 0f;
+
         AudioManager.Instance.PlayPlayerDeathSound();
         GameObject particles = ParticlePool.Instance.GetObject();
         

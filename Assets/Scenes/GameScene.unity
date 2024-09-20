@@ -1434,6 +1434,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   player: {fileID: 620688371}
+  endLevelMenuUI: {fileID: 1975232276}
 --- !u!1 &685792300
 GameObject:
   m_ObjectHideFlags: 0
