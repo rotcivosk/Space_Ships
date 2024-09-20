@@ -63,4 +63,10 @@ public class PlayerMovement : MonoBehaviour
            spriteRenderer.sprite = movingRight;
         }
     }
+
+
+    private void OnTriggerEnter2D(Collider2D other) {
+        AudioManager.Instance.PlayPlayerDeathSound();
+        
+    }
 }

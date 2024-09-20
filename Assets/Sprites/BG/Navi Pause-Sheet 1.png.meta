@@ -1,5 +1,5 @@
 fileFormatVersion: 2
-guid: b27f178ea77bdb7479d8328def3b4a7a
+guid: 6927c09fb86cdaf449f0f1029ced8ad1
 TextureImporter:
   internalIDToNameTable: []
   externalObjects: {}
@@ -110,13 +110,13 @@ TextureImporter:
     serializedVersion: 2
     sprites:
     - serializedVersion: 2
-      name: Navi Pause-Sheet_0
+      name: Navi Pause-Sheet 1_0
       rect:
         serializedVersion: 2
-        x: 52
-        y: 220
-        width: 65
-        height: 10
+        x: 0
+        y: 460.8
+        width: 160
+        height: 115.2
       alignment: 0
       pivot: {x: 0, y: 0}
       border: {x: 0, y: 0, z: 0, w: 0}
@@ -124,20 +124,20 @@ TextureImporter:
       physicsShape: []
       tessellationDetail: 0
       bones: []
-      spriteID: 4a5e5625dd18e2646965a61c6d339ae6
-      internalID: -151433263
+      spriteID: f3124a222a94681499c8b5e106311e68
+      internalID: -758478956
       vertices: []
       indices: 
       edges: []
       weights: []
     - serializedVersion: 2
-      name: Navi Pause-Sheet_1
+      name: Navi Pause-Sheet 1_1
       rect:
         serializedVersion: 2
-        x: 52
-        y: 206
-        width: 65
-        height: 10
+        x: 0
+        y: 345.8
+        width: 160
+        height: 115.2
       alignment: 0
       pivot: {x: 0, y: 0}
       border: {x: 0, y: 0, z: 0, w: 0}
@@ -145,20 +145,20 @@ TextureImporter:
       physicsShape: []
       tessellationDetail: 0
       bones: []
-      spriteID: c8ed1bcb206f24343b8f36d0d1558047
-      internalID: -1677900756
+      spriteID: 71cd931b556105d42a8222f0903fb4be
+      internalID: 399451261
       vertices: []
       indices: 
       edges: []
       weights: []
     - serializedVersion: 2
-      name: Navi Pause-Sheet_2
+      name: Navi Pause-Sheet 1_2
       rect:
         serializedVersion: 2
-        x: 52
-        y: 191
-        width: 65
-        height: 10
+        x: 0
+        y: 115.8
+        width: 160
+        height: 115.2
       alignment: 0
       pivot: {x: 0, y: 0}
       border: {x: 0, y: 0, z: 0, w: 0}
@@ -166,8 +166,29 @@ TextureImporter:
       physicsShape: []
       tessellationDetail: 0
       bones: []
-      spriteID: 7d5df8e4f3c99954db59fda6870d20d1
-      internalID: -1731287203
+      spriteID: 849f0b7d8214e1246a52f83ee4a4aef7
+      internalID: -1205891424
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: Navi Pause-Sheet 1_3
+      rect:
+        serializedVersion: 2
+        x: 0
+        y: 0.80000305
+        width: 160
+        height: 115.2
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: 7d9df0b6f965c914d8d498c16aab988d
+      internalID: 1531202291
       vertices: []
       indices: 
       edges: []
@@ -183,9 +204,10 @@ TextureImporter:
     weights: []
     secondaryTextures: []
     nameFileIdTable:
-      Navi Pause-Sheet_0: -151433263
-      Navi Pause-Sheet_1: -1677900756
-      Navi Pause-Sheet_2: -1731287203
+      Navi Pause-Sheet 1_0: -758478956
+      Navi Pause-Sheet 1_1: 399451261
+      Navi Pause-Sheet 1_2: -1205891424
+      Navi Pause-Sheet 1_3: 1531202291
   mipmapLimitGroupName: 
   pSDRemoveMatte: 0
   userData: 

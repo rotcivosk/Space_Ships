@@ -1,5 +1,5 @@
 fileFormatVersion: 2
-guid: b27f178ea77bdb7479d8328def3b4a7a
+guid: 2f671701600e1204ba622d87cfcbccd8
 TextureImporter:
   internalIDToNameTable: []
   externalObjects: {}
@@ -110,64 +110,43 @@ TextureImporter:
     serializedVersion: 2
     sprites:
     - serializedVersion: 2
-      name: Navi Pause-Sheet_0
+      name: Navi Menu-Sheet_1
       rect:
         serializedVersion: 2
-        x: 52
-        y: 220
-        width: 65
-        height: 10
+        x: 54
+        y: 625
+        width: 52
+        height: 8
       alignment: 0
-      pivot: {x: 0, y: 0}
+      pivot: {x: 0.5, y: 0.5}
       border: {x: 0, y: 0, z: 0, w: 0}
       outline: []
       physicsShape: []
       tessellationDetail: 0
       bones: []
-      spriteID: 4a5e5625dd18e2646965a61c6d339ae6
-      internalID: -151433263
+      spriteID: f065c89ca4894894c96b86d54ae608a6
+      internalID: 1862937713
       vertices: []
       indices: 
       edges: []
       weights: []
     - serializedVersion: 2
-      name: Navi Pause-Sheet_1
+      name: Navi Menu-Sheet 1_0
       rect:
         serializedVersion: 2
-        x: 52
-        y: 206
-        width: 65
-        height: 10
+        x: 54
+        y: 612
+        width: 52
+        height: 8
       alignment: 0
-      pivot: {x: 0, y: 0}
+      pivot: {x: 0.5, y: 0.5}
       border: {x: 0, y: 0, z: 0, w: 0}
       outline: []
       physicsShape: []
       tessellationDetail: 0
       bones: []
-      spriteID: c8ed1bcb206f24343b8f36d0d1558047
-      internalID: -1677900756
-      vertices: []
-      indices: 
-      edges: []
-      weights: []
-    - serializedVersion: 2
-      name: Navi Pause-Sheet_2
-      rect:
-        serializedVersion: 2
-        x: 52
-        y: 191
-        width: 65
-        height: 10
-      alignment: 0
-      pivot: {x: 0, y: 0}
-      border: {x: 0, y: 0, z: 0, w: 0}
-      outline: []
-      physicsShape: []
-      tessellationDetail: 0
-      bones: []
-      spriteID: 7d5df8e4f3c99954db59fda6870d20d1
-      internalID: -1731287203
+      spriteID: 757834c10be7f2340a820bc67beac5a1
+      internalID: 237715076
       vertices: []
       indices: 
       edges: []
@@ -183,9 +162,13 @@ TextureImporter:
     weights: []
     secondaryTextures: []
     nameFileIdTable:
-      Navi Pause-Sheet_0: -151433263
-      Navi Pause-Sheet_1: -1677900756
-      Navi Pause-Sheet_2: -1731287203
+      Navi Menu-Sheet 1_0: 237715076
+      Navi Menu-Sheet_0: -88569535
+      Navi Menu-Sheet_1: 1862937713
+      Navi Menu-Sheet_2: -1001692426
+      Navi Menu-Sheet_3: 1354035135
+      Navi Menu-Sheet_4: 1058280594
+      Navi Menu-Sheet_5: -1522066597
   mipmapLimitGroupName: 
   pSDRemoveMatte: 0
   userData: 

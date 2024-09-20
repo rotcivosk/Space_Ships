@@ -7,8 +7,6 @@ public class Enemy  : MonoBehaviour
     [SerializeField] float health = 5.0f;
     [SerializeField] private float lifeTime = 5f;
     private float spawnTime;
-
-
     void Update()
     {       
         if(Time.time - spawnTime >= lifeTime) {
@@ -20,32 +18,29 @@ public class Enemy  : MonoBehaviour
         health -= hitPoints;
 
         if (health < 0){
-            DieState();
+            beingKilledState();
         }
-        
-
     }
-
     void OnEnable()
     {
-        
         spawnTime = Time.time;
-
         health = 100f;
-
-        // Reset movement scripts if necessary
         EnemyMovement enemyMovement = GetComponent<EnemyMovement>();
         if (enemyMovement != null)
         {
             enemyMovement.ResetMovement();
         }
     }
-    void DieState()
-    {
 
+    void beingKilledState() {
         startSoundEffect();
         GameController.Instance.AddScore(10);
-        
+        DieState();
+
+    }
+
+    void DieState()
+    {
 
         GameObject particles = ParticlePool.Instance.GetObject();
         particles.transform.position = this.transform.position;

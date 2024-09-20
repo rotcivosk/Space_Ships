@@ -219,8 +219,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   health: 10
-  lifeTime: 5
-  audioSource: {fileID: 5374575389348231163}
+  lifeTime: 9
 --- !u!114 &4465470011737328293
 MonoBehaviour:
   m_ObjectHideFlags: 0
