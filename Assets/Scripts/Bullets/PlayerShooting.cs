@@ -23,6 +23,7 @@ public class PlayerShooting : MonoBehaviour
     }
 
     void FireBullet(){
+        AudioManager.Instance.PlayShotSound();
         GameObject bullet = BulletPool.Instance.GetObject();
         bullet.transform.position = transform.position;
         bullet.transform.rotation = transform.rotation;

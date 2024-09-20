@@ -23,7 +23,7 @@ public class Bullet : MonoBehaviour
 
     void OnTriggerEnter2D(Collider2D collision){
 
-        if (collision.tag == "Enemy"){
+        if (collision.tag == "Enemy"|| collision.tag == "Enemy2"){
             //Debug.Log("Identificou Inimigo");
             Enemy enemy = collision.gameObject.GetComponent<Enemy>();
             enemy.TakeHit(bulletDamage);
