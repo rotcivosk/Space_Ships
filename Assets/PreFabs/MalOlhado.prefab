@@ -219,7 +219,6 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   health: 10
   lifeTime: 5
-  particlePrefab: {fileID: 1125228838425058804, guid: 76c51608f384d784bbd77473dd099e51, type: 3}
 --- !u!114 &4465470011737328293
 MonoBehaviour:
   m_ObjectHideFlags: 0

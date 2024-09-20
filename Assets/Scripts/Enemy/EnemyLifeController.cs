@@ -6,7 +6,6 @@ public class Enemy  : MonoBehaviour
 {
     [SerializeField] float health = 5.0f;
     [SerializeField] private float lifeTime = 5f;
-    [SerializeField] private GameObject particlePrefab;
     private float spawnTime;
 
     void Update()
@@ -40,11 +39,23 @@ public class Enemy  : MonoBehaviour
             enemyMovement.ResetMovement();
         }
     }
-    void DieState() {
-        Debug.Log("Morreu");
-        //Instantiate(particlePrefab, this.transform.position, Quaternion.identity);
-        //Destroy(particlePrefab, 3f);
-        //particles.Play();
+    void DieState()
+    {
+        // Get particle system from the pool
+        GameObject particles = ParticlePool.Instance.GetObject();
+        particles.transform.position = this.transform.position;
+
+        // Get ParticleSystem component
+        ParticleSystem particleSystem = particles.GetComponent<ParticleSystem>();
+        if (particleSystem != null)
+        {
+            particleSystem.Play();
+        }
+
+        // Return the enemy to the pool immediately
         EnemyPool.Instance.ReturnObject(gameObject);
+
+        // Call ParticleManager to handle particle system coroutine
+        ParticleManager.Instance.PlayParticlesAndReturn(particles, particleSystem);
     }
 }
