@@ -7,6 +7,8 @@ public class Enemy  : MonoBehaviour
     [SerializeField] float health = 5.0f;
     [SerializeField] private float lifeTime = 5f;
     private float spawnTime;
+    [SerializeField] private AudioSource audioSource;
+    [SerializeField] private AudioClip clip;
 
     void Update()
     {       
@@ -41,6 +43,7 @@ public class Enemy  : MonoBehaviour
     }
     void DieState()
     {
+        GameController.Instance.AddScore(10);
         // Get particle system from the pool
         GameObject particles = ParticlePool.Instance.GetObject();
         particles.transform.position = this.transform.position;
