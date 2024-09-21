@@ -11,7 +11,7 @@ public class GameController : MonoBehaviour
     [SerializeField] private GameObject bossPrefab; // Ensure bossPrefab is declared here
     [SerializeField] private Transform bossSpawnPoint;
     [SerializeField] private EnemySpawner enemySpawner;
-
+    [SerializeField] private EnemySpawner_Olho enemySpawner_;
     private bool bossSpawned = false;
     [SerializeField] private float bossSpawnDelay = 2f; // Time to wait before spawning the boss
 
@@ -57,6 +57,7 @@ public class GameController : MonoBehaviour
         if (enemySpawner != null)
         {
             enemySpawner.StopSpawning();
+            enemySpawner_.StopSpawning();
         }
 
         // Wait for the specified delay before spawning the boss
@@ -82,6 +83,7 @@ public class GameController : MonoBehaviour
         if (enemySpawner != null)
         {
             enemySpawner.StartSpawning();
+             enemySpawner_.StartSpawning();
         }
     }
 }

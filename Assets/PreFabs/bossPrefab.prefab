@@ -11,6 +11,7 @@ GameObject:
   - component: {fileID: 4149939395870231335}
   - component: {fileID: 5771042806847431466}
   - component: {fileID: 4646457880889939016}
+  - component: {fileID: 7247327910880400626}
   m_Layer: 0
   m_Name: OlhoDireito
   m_TagString: Untagged
@@ -120,6 +121,27 @@ CircleCollider2D:
   m_Offset: {x: 0, y: 0}
   serializedVersion: 2
   m_Radius: 0.5625
+--- !u!95 &7247327910880400626
+Animator:
+  serializedVersion: 5
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 4618239842259699939}
+  m_Enabled: 1
+  m_Avatar: {fileID: 0}
+  m_Controller: {fileID: 9100000, guid: 9240be6bedbc5b94cbdeeab55bd5f95d, type: 2}
+  m_CullingMode: 0
+  m_UpdateMode: 0
+  m_ApplyRootMotion: 0
+  m_LinearVelocityBlending: 0
+  m_StabilizeFeet: 0
+  m_WarningMessage: 
+  m_HasTransformHierarchy: 1
+  m_AllowConstantClipSamplingOptimization: 1
+  m_KeepAnimatorStateOnDisable: 0
+  m_WriteDefaultValuesOnDisable: 0
 --- !u!1 &5160183930633397907
 GameObject:
   m_ObjectHideFlags: 0
@@ -131,6 +153,7 @@ GameObject:
   - component: {fileID: 6713653757287956241}
   - component: {fileID: 3935267894956746930}
   - component: {fileID: 7947237556583681372}
+  - component: {fileID: 381961377235238927}
   m_Layer: 0
   m_Name: OlhoEsquerdo
   m_TagString: Untagged
@@ -147,7 +170,7 @@ Transform:
   m_GameObject: {fileID: 5160183930633397907}
   serializedVersion: 2
   m_LocalRotation: {x: -0, y: -0, z: -0, w: 1}
-  m_LocalPosition: {x: -4.38, y: -3.03, z: -9.8132105}
+  m_LocalPosition: {x: -4.38, y: -3.03, z: -9.81321}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_ConstrainProportionsScale: 0
   m_Children: []
@@ -240,6 +263,27 @@ CircleCollider2D:
   m_Offset: {x: 0, y: 0}
   serializedVersion: 2
   m_Radius: 0.5625
+--- !u!95 &381961377235238927
+Animator:
+  serializedVersion: 5
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 5160183930633397907}
+  m_Enabled: 1
+  m_Avatar: {fileID: 0}
+  m_Controller: {fileID: 9100000, guid: 095a7769b8eaca94b974e60b674776db, type: 2}
+  m_CullingMode: 0
+  m_UpdateMode: 0
+  m_ApplyRootMotion: 0
+  m_LinearVelocityBlending: 0
+  m_StabilizeFeet: 0
+  m_WarningMessage: 
+  m_HasTransformHierarchy: 1
+  m_AllowConstantClipSamplingOptimization: 1
+  m_KeepAnimatorStateOnDisable: 0
+  m_WriteDefaultValuesOnDisable: 0
 --- !u!1 &6858213069916118711
 GameObject:
   m_ObjectHideFlags: 0
@@ -285,6 +329,7 @@ GameObject:
   - component: {fileID: 1596680334987262679}
   - component: {fileID: 5176866378432359421}
   - component: {fileID: 5910725249999882009}
+  - component: {fileID: 6115685325730744152}
   m_Layer: 0
   m_Name: "C\xE9rebro"
   m_TagString: Untagged
@@ -394,3 +439,24 @@ CircleCollider2D:
   m_Offset: {x: 0, y: 0}
   serializedVersion: 2
   m_Radius: 2.90625
+--- !u!95 &6115685325730744152
+Animator:
+  serializedVersion: 5
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 8706763610355511516}
+  m_Enabled: 1
+  m_Avatar: {fileID: 0}
+  m_Controller: {fileID: 9100000, guid: c9e789de4a9ffbb41ba143946cd7f394, type: 2}
+  m_CullingMode: 0
+  m_UpdateMode: 0
+  m_ApplyRootMotion: 0
+  m_LinearVelocityBlending: 0
+  m_StabilizeFeet: 0
+  m_WarningMessage: 
+  m_HasTransformHierarchy: 1
+  m_AllowConstantClipSamplingOptimization: 1
+  m_KeepAnimatorStateOnDisable: 0
+  m_WriteDefaultValuesOnDisable: 0

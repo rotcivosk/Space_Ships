@@ -45,6 +45,6 @@ public class PlayerLifeController : MonoBehaviour
         }
         player.SetActive(false);
         ParticleManager.Instance.PlayParticlesAndReturn(particles, particleSystem);
-        GameController.Instance.GameOver();
+        //GameController.Instance.GameOver();
     }
 }

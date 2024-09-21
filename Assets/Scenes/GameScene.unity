@@ -300,6 +300,7 @@ MonoBehaviour:
   bossPrefab: {fileID: 6858213069916118711, guid: 792626bfa998eb24e95d9088767a278a, type: 3}
   bossSpawnPoint: {fileID: 1408261221}
   enemySpawner: {fileID: 1599213206}
+  enemySpawner_: {fileID: 1955444676}
   bossSpawnDelay: 2
 --- !u!1 &227599487
 GameObject:
@@ -3433,7 +3434,7 @@ GameObject:
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
-  m_IsActive: 1
+  m_IsActive: 0
 --- !u!224 &1975232277
 RectTransform:
   m_ObjectHideFlags: 0
