@@ -29,6 +29,18 @@ public class Bullet : MonoBehaviour
             enemy.TakeHit(bulletDamage);
             //collision.gameObject.SendMessage("TakeHit", 1.0);
         }
+        if (collision.tag == "Boss"){
+        BossController boss = collision.gameObject.GetComponentInParent<BossController>();
+
+        if (boss != null)
+        {
+            boss.TakeDamageBoss(bulletDamage);
+        }
+        else
+        {
+            Debug.LogError("BossController not found on the Boss GameObject.");
+        }
+        }
         BulletPool.Instance.ReturnObject(gameObject);
     }
 

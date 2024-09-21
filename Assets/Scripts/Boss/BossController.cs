@@ -1,15 +1,20 @@
 using UnityEngine;
+using System.Collections;
 
 public class BossController : MonoBehaviour
 {
-    public int maxHealth = 100;
-    private int currentHealth;
-
+    [SerializeField] float maxHealthBoss = 1000;
+    private float currentHealth;
+    [SerializeField] Animator animatorLeftEye;
+    private bool isAttacking = false;
+    [SerializeField] private float attackInterval = 10f; 
+    [SerializeField] Animator animatorRightEye;
+    private bool isAttacking2 = false;
+    [SerializeField] private float attackInterval2 = 10f; 
     private BossPart[] bossParts;
-
     void Start()
     {
-        currentHealth = maxHealth;
+        currentHealth = maxHealthBoss;
 
         // Get all BossPart components from children
         bossParts = GetComponentsInChildren<BossPart>();
@@ -19,10 +24,12 @@ public class BossController : MonoBehaviour
         {
             part.SetBossController(this);
         }
+        StartCoroutine(AttackRoutine());
+        StartCoroutine(AttackRoutine2());
     }
 
     // Method to handle damage
-    public void TakeDamage(int damage)
+    public void TakeDamageBoss(float damage)
     {
         currentHealth -= damage;
 
@@ -34,7 +41,6 @@ public class BossController : MonoBehaviour
         }
     }
 
-    // Method called when any boss part dies
     public void Die()
     {
         // Destroy all parts
@@ -45,8 +51,34 @@ public class BossController : MonoBehaviour
 
         // Notify the GameController that the boss has been defeated
         GameController.Instance.OnBossDefeated();
-
-        // Destroy the boss object
         Destroy(gameObject);
+    }
+    private IEnumerator AttackRoutine()
+    {
+        while (true)
+        {
+            yield return new WaitForSeconds(attackInterval);
+            isAttacking = !isAttacking;
+            animatorLeftEye.SetBool("isAttacking", isAttacking);
+            yield return new WaitForSeconds(2f);
+
+            // Turn off the attack
+            isAttacking = false;
+            animatorLeftEye.SetBool("isAttacking", isAttacking);
+        }
+    }
+    private IEnumerator AttackRoutine2()
+    {
+        while (true)
+        {
+            yield return new WaitForSeconds(attackInterval2);
+            isAttacking2 = !isAttacking2;
+            animatorRightEye.SetBool("isAttacking", isAttacking2);
+            yield return new WaitForSeconds(3f);
+
+            // Turn off the attack
+            isAttacking2 = false;
+            animatorRightEye.SetBool("isAttacking", isAttacking2);
+        }
     }
 }
