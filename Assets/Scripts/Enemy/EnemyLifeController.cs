@@ -7,9 +7,6 @@ public class Enemy  : MonoBehaviour
     [SerializeField] float health = 5.0f;
     [SerializeField] private float lifeTime = 5f;
     private float spawnTime;
-    [SerializeField] private AudioSource audioSource;
-    [SerializeField] private AudioClip clip;
-
     void Update()
     {       
         if(Time.time - spawnTime >= lifeTime) {
@@ -21,44 +18,47 @@ public class Enemy  : MonoBehaviour
         health -= hitPoints;
 
         if (health < 0){
-            DieState();
+            beingKilledState();
         }
-        
-
     }
-
     void OnEnable()
     {
-        
         spawnTime = Time.time;
-
         health = 100f;
-
-        // Reset movement scripts if necessary
         EnemyMovement enemyMovement = GetComponent<EnemyMovement>();
         if (enemyMovement != null)
         {
             enemyMovement.ResetMovement();
         }
     }
+
+    void beingKilledState() {
+        startSoundEffect();
+        GameController.Instance.AddScore(10);
+        DieState();
+
+    }
+
     void DieState()
     {
-        GameController.Instance.AddScore(10);
-        // Get particle system from the pool
+
         GameObject particles = ParticlePool.Instance.GetObject();
         particles.transform.position = this.transform.position;
-
-        // Get ParticleSystem component
         ParticleSystem particleSystem = particles.GetComponent<ParticleSystem>();
         if (particleSystem != null)
         {
             particleSystem.Play();
         }
-
-        // Return the enemy to the pool immediately
         EnemyPool.Instance.ReturnObject(gameObject);
-
-        // Call ParticleManager to handle particle system coroutine
         ParticleManager.Instance.PlayParticlesAndReturn(particles, particleSystem);
+    }
+
+    private void startSoundEffect(){
+        if (gameObject.tag == "Enemy"){
+        AudioManager.Instance.PlayEnemyDeathSound();
+        }
+        if (gameObject.tag == "Enemy2"){
+        AudioManager.Instance.PlayEnemyEyeDeathSound();
+        }
     }
 }

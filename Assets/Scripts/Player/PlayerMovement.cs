@@ -63,4 +63,7 @@ public class PlayerMovement : MonoBehaviour
            spriteRenderer.sprite = movingRight;
         }
     }
+
+
+    
 }
