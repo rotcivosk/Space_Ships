@@ -1,16 +1,20 @@
 using UnityEngine;
-using UnityEngine.SceneManagement;
 using TMPro;
+using System.Collections; // Required for coroutines
 
 public class GameController : MonoBehaviour
 {
     public int score = 0;
     public static GameController Instance;
-    [SerializeField] private GameObject endLevelMenuUI;
+
     [SerializeField] private TextMeshProUGUI scoreText;
-    [SerializeField] private EnemySpawner enemySpawner1;
-        [SerializeField] private EnemySpawner enemySpawner2;
+    [SerializeField] private GameObject bossPrefab; // Ensure bossPrefab is declared here
+    [SerializeField] private Transform bossSpawnPoint;
+    [SerializeField] private EnemySpawner enemySpawner;
+
     private bool bossSpawned = false;
+    [SerializeField] private float bossSpawnDelay = 2f; // Time to wait before spawning the boss
+
     private void Awake()
     {
         // Singleton pattern
@@ -33,31 +37,10 @@ public class GameController : MonoBehaviour
     {
         score += amount;
         UpdateScoreUI();
-                if (score >= 1000 && !bossSpawned)
-        {
-            SpawnBoss();
-        }
-    }
-     private void SpawnBoss()
-    {
-        bossSpawned = true;
 
-        // Stop normal enemy spawning
-        if (enemySpawner1 != null)
+        if (score >= 30 && !bossSpawned)
         {
-            enemySpawner1.StopSpawning();
-        }
-
-        // Spawn the boss
-        Instantiate(bossPrefab, bossSpawnPoint.position, Quaternion.identity);
-    }
-    // Call this method when the boss is defeated
-    public void OnBossDefeated()
-    {
-        // Resume normal enemy spawning
-        if (enemySpawner != null)
-        {
-            enemySpawner.StartSpawning();
+            StartCoroutine(SpawnBossCoroutine()); // Use a coroutine to handle delay
         }
     }
 
@@ -66,10 +49,39 @@ public class GameController : MonoBehaviour
         scoreText.text = "Score: " + score;
     }
 
-    public void GameOver()
+    private IEnumerator SpawnBossCoroutine()
     {
-        // Activate the end level menu
-        endLevelMenuUI.SetActive(true);
-        // Time.timeScale = 0f; // Optional: Pause the game
+        bossSpawned = true;
+
+        // Stop normal enemy spawning
+        if (enemySpawner != null)
+        {
+            enemySpawner.StopSpawning();
+        }
+
+        // Wait for the specified delay before spawning the boss
+        yield return new WaitForSeconds(bossSpawnDelay);
+
+        // Spawn the boss
+        if (bossPrefab != null)
+        {
+            Instantiate(bossPrefab, bossSpawnPoint.position, Quaternion.identity);
+        }
+        else
+        {
+            Debug.LogError("Boss Prefab is not assigned in the GameController!");
+        }
+    }
+
+    // Call this method when the boss is defeated
+    public void OnBossDefeated()
+    {
+        bossSpawned = false;
+
+        // Resume normal enemy spawning
+        if (enemySpawner != null)
+        {
+            enemySpawner.StartSpawning();
+        }
     }
 }

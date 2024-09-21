@@ -8,14 +8,28 @@ public class EnemySpawner_Olho : MonoBehaviour
     [SerializeField] private Transform[] spawnPoints; // Positions where enemies can spawn
     [SerializeField] private MovementType[] movementTypes; // Different movement patterns
     private float nextSpawn;
-
+    private bool isSpawning = true; // Flag to control spawning
     void Update()
     {
-        if (Time.time > nextSpawn)
+        if (isSpawning && Time.time > nextSpawn)
         {
             nextSpawn = Time.time + spawnRate;
             SpawnEnemy();
         }
+    }
+
+    // Method to start spawning enemies
+    public void StartSpawning()
+    {
+        isSpawning = true;
+        // Optionally reset nextSpawn to prevent immediate spawning
+        nextSpawn = Time.time + spawnRate;
+    }
+
+    // Method to stop spawning enemies
+    public void StopSpawning()
+    {
+        isSpawning = false;
     }
 
     void SpawnEnemy()
