@@ -4,17 +4,14 @@ using UnityEngine;
 
 public class PlayerLifeController : MonoBehaviour
 {
-    // Start is called before the first frame update
     [SerializeField] private GameObject player; 
-    [SerializeField] private GameObject endLevelMenuUI; // Reference to the End Level Menu UI
-
-    private bool isDead = false;
+    [SerializeField] private GameObject endLevelMenuUI;
     void Start()
     {
         
     }
 
-    // Update is called once per frame
+
     void Update()
     {
         
@@ -23,16 +20,13 @@ public class PlayerLifeController : MonoBehaviour
     private void OnTriggerEnter2D(Collider2D other) {
         PlayerDying();
 
-        isDead = true;
 
 
     }
 
-
     private void PlayerDying(){
 
-        endLevelMenuUI.SetActive(true);
-        Time.timeScale = 0f;
+        
 
         AudioManager.Instance.PlayPlayerDeathSound();
         GameObject particles = ParticlePool.Instance.GetObject();
@@ -45,6 +39,13 @@ public class PlayerLifeController : MonoBehaviour
         }
         player.SetActive(false);
         ParticleManager.Instance.PlayParticlesAndReturn(particles, particleSystem);
-        //GameController.Instance.GameOver();
+        // Wait 2 seconds here
+        Invoke("ShowEndLevelMenu", 0.5f);
+
+    }
+    private void ShowEndLevelMenu()
+    {
+        endLevelMenuUI.SetActive(true);
+        Time.timeScale = 0f;
     }
 }

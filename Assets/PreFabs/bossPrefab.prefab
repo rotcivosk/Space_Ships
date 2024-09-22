@@ -387,7 +387,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: d78be59bdc40e904096eaed223f15183, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  maxHealthBoss: 1000
+  maxHealthBoss: 10000
   animatorLeftEye: {fileID: 381961377235238927}
   attackInterval: 4
   animatorRightEye: {fileID: 7247327910880400626}
