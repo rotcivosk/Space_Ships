@@ -11,7 +11,9 @@ public class BossController : MonoBehaviour
     [SerializeField] Animator animatorRightEye;
     private bool isAttacking2 = false;
     [SerializeField] private float attackInterval2 = 10f; 
+    [SerializeField] private ParticleSystem deathParticles; // Sistema de partículas que será tocado na morte
     private BossPart[] bossParts;
+
     void Start()
     {
         currentHealth = maxHealthBoss;
@@ -28,12 +30,12 @@ public class BossController : MonoBehaviour
         StartCoroutine(AttackRoutine2());
     }
 
-    // Method to handle damage
+    // Método para tratar o dano
     public void TakeDamageBoss(float damage)
     {
         currentHealth -= damage;
 
-        // Optionally, update a health bar UI here
+        // Opcionalmente, atualizar uma barra de vida aqui
 
         if (currentHealth <= 0)
         {
@@ -41,18 +43,27 @@ public class BossController : MonoBehaviour
         }
     }
 
-    public void Die()
+public void Die()
+{
+    // Reproduzir o sistema de partículas de morte usando o ParticleManager
+    if (deathParticles != null)
     {
-        // Destroy all parts
-        foreach (var part in bossParts)
-        {
-            Destroy(part.gameObject);
-        }
-
-        // Notify the GameController that the boss has been defeated
-        GameController.Instance.OnBossDefeated();
-        Destroy(gameObject);
+        ParticleManager.Instance.PlayBossParticlesAndReturn(deathParticles);
     }
+
+    // Destruir todas as partes do chefe
+    foreach (var part in bossParts)
+    {
+        Destroy(part.gameObject);
+    }
+
+    // Notificar o GameController que o chefe foi derrotado
+    GameController.Instance.OnBossDefeated();
+
+    // Destruir o próprio chefe
+    Destroy(gameObject);
+}
+
     private IEnumerator AttackRoutine()
     {
         while (true)
@@ -62,11 +73,12 @@ public class BossController : MonoBehaviour
             animatorLeftEye.SetBool("isAttacking", isAttacking);
             yield return new WaitForSeconds(2f);
 
-            // Turn off the attack
+            // Desativar o ataque
             isAttacking = false;
             animatorLeftEye.SetBool("isAttacking", isAttacking);
         }
     }
+
     private IEnumerator AttackRoutine2()
     {
         while (true)
@@ -76,7 +88,7 @@ public class BossController : MonoBehaviour
             animatorRightEye.SetBool("isAttacking", isAttacking2);
             yield return new WaitForSeconds(3f);
 
-            // Turn off the attack
+            // Desativar o ataque
             isAttacking2 = false;
             animatorRightEye.SetBool("isAttacking", isAttacking2);
         }

@@ -17,21 +17,42 @@ public class ParticleManager : MonoBehaviour
         }
     }
 
-    // Coroutine to handle the particle system
+
     public void PlayParticlesAndReturn(GameObject particles, ParticleSystem particleSystem)
     {
         StartCoroutine(ReturnParticlesAfterPlay(particles, particleSystem));
     }
 
+
+    public void PlayBossParticlesAndReturn(ParticleSystem particleSystem)
+    {
+        StartCoroutine(ReturnBossParticlesAfterPlay(particleSystem));
+    }
+
+
     private IEnumerator ReturnParticlesAfterPlay(GameObject particles, ParticleSystem particleSystem)
     {
-        // Wait until the particle system has finished playing
         while (particleSystem != null && particleSystem.isPlaying)
         {
             yield return null;
         }
 
-        // Return particles to the pool after playing
+ 
         ParticlePool.Instance.ReturnObject(particles);
+    }
+
+
+    private IEnumerator ReturnBossParticlesAfterPlay(ParticleSystem particleSystem)
+    {
+
+        while (particleSystem != null && particleSystem.isPlaying)
+        {
+            yield return null;
+        }
+
+        if (particleSystem != null)
+        {
+            particleSystem.gameObject.SetActive(false);
+        }
     }
 }
