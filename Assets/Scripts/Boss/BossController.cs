@@ -51,6 +51,8 @@ public void Die()
         ParticleManager.Instance.PlayBossParticlesAndReturn(deathParticles);
     }
 
+            
+
     // Destruir todas as partes do chefe
     foreach (var part in bossParts)
     {
@@ -59,6 +61,7 @@ public void Die()
 
     // Notificar o GameController que o chefe foi derrotado
     GameController.Instance.OnBossDefeated();
+    GameController.Instance.AddScore(250);
 
     // Destruir o próprio chefe
     Destroy(gameObject);

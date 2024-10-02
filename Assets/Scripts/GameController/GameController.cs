@@ -38,7 +38,7 @@ public class GameController : MonoBehaviour
         score += amount;
         UpdateScoreUI();
 
-        if (score >= 30 && !bossSpawned)
+        if (score >= 500 && !bossSpawned)
         {
             StartCoroutine(SpawnBossCoroutine()); // Use a coroutine to handle delay
         }
